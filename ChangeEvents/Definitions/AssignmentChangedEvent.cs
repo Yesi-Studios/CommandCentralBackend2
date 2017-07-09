@@ -1,11 +1,11 @@
-﻿using CommandCentral.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AtwoodUtils;
 using CommandCentral.Models;
+using CommandCentral.Enums;
+using CommandCentral.ChangeEvents;
 
 namespace CommandCentral.ChangeEventSystem.ChangeEvents
 {
@@ -105,7 +105,7 @@ namespace CommandCentral.ChangeEventSystem.ChangeEvents
                 emails.Add(Email.EmailInterface.CCEmailMessage
                     .CreateDefault()
                     .To(emailAddress)
-                    .Subject("{0} Event".With(this.EventName))
+                    .Subject($"{this.EventName} Event")
                     .HTMLAlternateViewUsingTemplateFromEmbedded("CommandCentral.Email.Templates.AssignmentChangedEvent_HTML.html", new Email.Models.AssignmentChangedEventEmailModel { ChangeEvent = this }));
             }
 

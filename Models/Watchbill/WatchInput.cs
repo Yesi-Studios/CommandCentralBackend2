@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using FluentNHibernate.Mapping;
 using FluentValidation;
 using NHibernate.Type;
-using AtwoodUtils;
+using CommandCentral.Utilities.Types;
 
 namespace CommandCentral.Models.Watchbill
 {
