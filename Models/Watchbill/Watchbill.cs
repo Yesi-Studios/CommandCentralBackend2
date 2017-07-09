@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 using FluentNHibernate.Mapping;
 using FluentValidation;
 using CommandCentral.Models.ReferenceLists.Watchbill;
-using CommandCentral.ClientAccess;
 using System.Globalization;
-using AtwoodUtils;
 using NHibernate;
 using NHibernate.Type;
 using CommandCentral.Authorization;
+using CommandCentral.Utilities.Types;
+using CommandCentral.Framework.Data;
 
 namespace CommandCentral.Models.Watchbill
 {
@@ -719,7 +719,7 @@ namespace CommandCentral.Models.Watchbill
             FluentScheduler.JobManager.AddJob(() => SendWatchAlerts(), s => s.ToRunEvery(1).Hours().At(0));
 
             //Here, we're also going to set up any watch input requirements alerts we need for each watchbill that is in the open for inputs state.
-            using (var session = DataAccess.DataProvider.CreateStatefulSession())
+            using (var session = DataProvider.GetSession())
             {
                 var watchbills = session.QueryOver<Watchbill>().Where(x => x.CurrentState.Id == ReferenceLists.ReferenceListHelper<WatchbillStatus>.Find("Open for Inputs").Id).List();
 
@@ -736,7 +736,7 @@ namespace CommandCentral.Models.Watchbill
         /// </summary>
         private static void SendWatchAlerts()
         {
-            using (var session = DataAccess.DataProvider.CreateStatefulSession())
+            using (var session = DataProvider.GetSession())
             {
                 using (var transaction = session.BeginTransaction())
                 {
@@ -897,7 +897,7 @@ namespace CommandCentral.Models.Watchbill
                                 var otherShiftRange = new Itenso.TimePeriod.TimeRange(otherShift.Range.Start, otherShift.Range.End, false);
                                 if (shiftRange.OverlapsWith(otherShiftRange))
                                 {
-                                    errorElements.Add("{0} shifts: {1}".With(group.Key.ToString(), String.Join(" ; ", otherShiftRange.ToString())));
+                                    errorElements.Add($"{group.Key} shifts: {String.Join(" ; ", otherShiftRange.ToString())}");
                                 }
                             }
                         }
@@ -907,8 +907,7 @@ namespace CommandCentral.Models.Watchbill
 
                     if (errorElements.Any())
                     {
-                        string str = "One or more shifts with the same type overlap:  {0}"
-                            .With(String.Join(" | ", errorElements));
+                        string str = $"One or more shifts with the same type overlap:  {String.Join(" | ", errorElements)}";
                         return new FluentValidation.Results.ValidationFailure(nameof(watchbill.WatchShifts), str);
                     }
 

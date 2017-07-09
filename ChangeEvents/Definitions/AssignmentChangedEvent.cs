@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AtwoodUtils;
+using CommandCentral.Models;
 
 namespace CommandCentral.ChangeEventSystem.ChangeEvents
 {

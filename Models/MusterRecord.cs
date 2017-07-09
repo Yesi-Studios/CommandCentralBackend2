@@ -309,7 +309,7 @@ namespace CommandCentral.Models
                     //Set to false because we rolled back our changes.
                     IsMusterFinalized = false;
 
-                    Log.Exception(e, "The finalize muster method failed!  All changes were rolled back. The muster was not finalized!");
+                    //TODO Log.Exception(e, "The finalize muster method failed!  All changes were rolled back. The muster was not finalized!");
                     
                     //Note: we can't re-throw the error because no one is listening for it.  We just need to handle that here.  We're far outside the sync context, just south of the rishi maze.
                 }
@@ -333,7 +333,7 @@ namespace CommandCentral.Models
                 throw new Exception("You can't rollover the muster until it has been finalized.  Consider passing the finalizeIfNeeded flag set to true.");
 
             //First up, we need everyone and their muster records.  Actually we need a session first.
-            using (var session = DataAccess.DataProvider.CreateStatefulSession())
+            using (var session = DataProvider.GetSession())
             using (var transaction = session.BeginTransaction())
             {
                 try
@@ -357,7 +357,7 @@ namespace CommandCentral.Models
                 {
                     transaction.Rollback();
 
-                    Log.Exception(e, "The rollover muster method failed!  All changes were rolled back. The muster was not advanced!");
+                    //TODO Log.Exception(e, "The rollover muster method failed!  All changes were rolled back. The muster was not advanced!");
 
                     //Note: we can't rethrow the error because no one is listening for it.  We just need to handle that here.  We're far outside the sync context, just south of the rishi maze.
                 }
@@ -449,7 +449,7 @@ namespace CommandCentral.Models
                                 else
                                 {
                                     //Who the fuck knows what happened if we got here.
-                                    throw new Exception("A serious issue exists with the muster records from date '{0}' for person '{1}'.  Please resolve these issues.".With(person.CurrentMusterRecord.MusterDate, person.ToString()));
+                                    throw new Exception($"A serious issue exists with the muster records from date '{person.CurrentMusterRecord.MusterDate}' for person '{person}'.  Please resolve these issues.");
                                 }
                             }
 

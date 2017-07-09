@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using CommandCentral.Models;
 using CommandCentral.Models.ReferenceLists;
 using CommandCentral.Utilities;
+using CommandCentral.Utilities.Types;
 
 namespace CommandCentral.Email.Models
 {

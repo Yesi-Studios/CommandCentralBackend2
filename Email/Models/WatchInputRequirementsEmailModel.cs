@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CommandCentral.Models;
+using CommandCentral.Models.Watchbill;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,16 +16,16 @@ namespace CommandCentral.Email.Models
         /// <summary>
         /// The person to whom we're sending this email.
         /// </summary>
-        public Models.Person Person { get; set; }
+        public Person Person { get; set; }
 
         /// <summary>
         /// The watchbill referenced in the email we're sending.
         /// </summary>
-        public Models.Watchbill.Watchbill Watchbill { get; set; }
+        public Watchbill Watchbill { get; set; }
 
         /// <summary>
         /// The list of personnel who do not have inputs.
         /// </summary>
-        public IEnumerable<Models.Person> PersonsWithoutInputs { get; set; }
+        public IEnumerable<Person> PersonsWithoutInputs { get; set; }
     }
 }

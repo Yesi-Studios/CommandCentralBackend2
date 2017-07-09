@@ -6,6 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\**" />
+    <Content Remove="wwwroot\**" />
+    <EmbeddedResource Remove="wwwroot\**" />
+    <None Remove="wwwroot\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Email\Templates\AccountConfirmation_HTML.html" />
     <None Remove="Email\Templates\AssignmentChangedEvent_HTML.html" />
     <None Remove="Email\Templates\BeginPasswordReset_HTML.html" />
@@ -48,7 +55,6 @@
     <Folder Include="Authorization\Rules\" />
     <Folder Include="Models\" />
     <Folder Include="ChangeEvents\" />
-    <Folder Include="wwwroot\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="CommandLineParser" Version="1.9.71" />
