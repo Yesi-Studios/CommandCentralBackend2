@@ -14,6 +14,6 @@ namespace CommandCentral.Email.Models
         /// <summary>
         /// The change event this email references.
         /// </summary>
-        public ChangeEventSystem.ChangeEvents.NewPersonChangeEvent ChangeEvent { get; set; }
+        public ChangeEvents.ChangeEvents.NewPersonChangeEvent ChangeEvent { get; set; }
     }
 }

@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AtwoodUtils;
+using CommandCentral.Utilities;
 
 namespace CommandCentral.Email.Models
 {

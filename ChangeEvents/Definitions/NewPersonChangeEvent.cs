@@ -1,13 +1,13 @@
 ﻿using CommandCentral.ChangeEvents;
 using CommandCentral.Enums;
-using CommandCentral.Models;
+using CommandCentral.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CommandCentral.ChangeEventSystem.ChangeEvents
+namespace CommandCentral.ChangeEvents.ChangeEvents
 {
     /// <summary>
     /// The event that should be raised when a new person is created.
@@ -91,7 +91,7 @@ namespace CommandCentral.ChangeEventSystem.ChangeEvents
                 emails.Add(Email.EmailInterface.CCEmailMessage
                     .CreateDefault()
                     .To(emailAddress)
-                    .Subject("{0} Event".With(this.EventName))
+                    .Subject($"{EventName} Event")
                     .HTMLAlternateViewUsingTemplateFromEmbedded("CommandCentral.Email.Templates.NewPersonChangeEvent_HTML.html", new Email.Models.NewPersonChangeEventEmailModel { ChangeEvent = this }));
             }
 

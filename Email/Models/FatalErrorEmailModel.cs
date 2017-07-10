@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommandCentral.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,7 +22,7 @@ namespace CommandCentral.Email.Models
         /// <summary>
         /// The token...
         /// </summary>
-        public ClientAccess.MessageToken Token { get; set; }
+        public MessageLog MessageLog { get; set; }
 
         /// <summary>
         /// Returns a comma delineated list of the permissions the client has.
@@ -30,10 +31,12 @@ namespace CommandCentral.Email.Models
         {
             get
             {
-                if (Token.AuthenticationSession == null)
+                return null;
+                //TODO
+                /*if (Token.AuthenticationSession == null)
                     return null;
 
-                return String.Join(", ", Token.AuthenticationSession.Person.PermissionGroupNames);
+                return String.Join(", ", Token.AuthenticationSession.Person.PermissionGroupNames);*/
             }
         }
     }

@@ -1,11 +1,13 @@
 ﻿using CommandCentral.ChangeEvents;
+using CommandCentral.Enums;
+using CommandCentral.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CommandCentral.ChangeEventSystem.ChangeEvents
+namespace CommandCentral.ChangeEvents.ChangeEvents
 {
     /// <summary>
     /// The event that should be raised when a person's name changes.  A name change is reflected by the First, Middle, and Last names.
@@ -51,7 +53,7 @@ namespace CommandCentral.ChangeEventSystem.ChangeEvents
         public Person EventRaisedAbout { get; private set; }
 
         /// <summary>
-        /// The name of the persion prior to the database update.
+        /// The name of the person prior to the database update.
         /// </summary>
         public string OldName { get; private set; }
 
@@ -103,7 +105,7 @@ namespace CommandCentral.ChangeEventSystem.ChangeEvents
                 emails.Add(Email.EmailInterface.CCEmailMessage
                     .CreateDefault()
                     .To(emailAddress)
-                    .Subject("{0} Event".With(this.EventName))
+                    .Subject($"{EventName} Event")
                     .HTMLAlternateViewUsingTemplateFromEmbedded("CommandCentral.Email.Templates.NameChangedEvent_HTML.html", new Email.Models.NameChangedEventEmailModel { ChangeEvent = this }));
             }
 

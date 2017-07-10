@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Linq.Expressions;
-using AtwoodUtils;
 using System.Reflection;
+using CommandCentral.Enums;
 
 namespace CommandCentral.Authorization.Groups
 {

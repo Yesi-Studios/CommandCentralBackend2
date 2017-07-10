@@ -36,5 +36,30 @@ namespace CommandCentral.Utilities
             return cnt.Values.All(c => c == 0);
         }
 
+        /// <summary>
+        /// Does a shuffle using the Fisher-Yates shuffle algorithm.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        public static List<T> Shuffle<T>(this IEnumerable<T> source)
+        {
+            var list = source.ToList();
+            var random = new Random(DateTime.Now.Millisecond);
+
+            int n = list.Count;
+            while (n > 1)
+            {
+                n--;
+                int k = random.Next(n + 1);
+
+                T t = list[k];
+                list[k] = list[n];
+                list[n] = t;
+            }
+
+            return list;
+        }
+
     }
 }

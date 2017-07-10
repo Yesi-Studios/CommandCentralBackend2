@@ -24,6 +24,6 @@ namespace CommandCentral.Email.Models
         /// <summary>
         /// The watch assignments that are referred to in this email.
         /// </summary>
-        public List<Models.Watchbill.WatchAssignment> WatchAssignments { get; set; }
+        public List<Entities.Watchbill.WatchAssignment> WatchAssignments { get; set; }
     }
 }

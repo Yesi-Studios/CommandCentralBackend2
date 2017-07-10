@@ -14,6 +14,6 @@ namespace CommandCentral.Utilities.Types
         /// <summary>
         /// The comments.
         /// </summary>
-        IList<Models.Comment> Comments { get; set; }
+        IList<Entities.Comment> Comments { get; set; }
     }
 }

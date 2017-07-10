@@ -1,4 +1,4 @@
-﻿using AtwoodUtils;
+﻿using CommandCentral.Framework.Data;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -56,7 +56,7 @@ namespace CommandCentral.PreDefs
 
         public static void PersistPreDef<T>(PreDefOf<T> preDef) where T : class
         {
-            using (var session = DataProvider.GetSession())
+            using (var session = DataProvider.CurrentSession)
             {
                 using (var transaction = session.BeginTransaction())
                 {

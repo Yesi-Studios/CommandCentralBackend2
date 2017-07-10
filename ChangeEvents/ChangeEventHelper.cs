@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using NHibernate.Linq;
 using System.Reflection;
 using CommandCentral.Framework.Data;
-using CommandCentral.Models;
+using CommandCentral.Entities;
 using CommandCentral.Enums;
 
 namespace CommandCentral.ChangeEvents
@@ -53,7 +53,7 @@ namespace CommandCentral.ChangeEvents
             if (changeEvent.RestrictToChainOfCommand && person == null)
                 throw new Exception("If a change event requires a chain of command check, then the person argument can't be null.");
 
-            using (var session = DataProvider.GetSession())
+            using (var session = DataProvider.CurrentSession)
             {
                 //First, let's build the basic query for a person with this event in their subscriptions.
                 var query = session.Query<Person>().Where(x => x.SubscribedEvents.ContainsKey(changeEvent.Id));

@@ -28,7 +28,7 @@ namespace CommandCentral.Authorization.Groups.Definitions
             HasAccessLevel(ChainOfCommandLevels.Command);
 
             HasChainOfCommand(ChainsOfCommand.Main)
-                .CanReturn(PropertySelector.SelectPropertiesFrom<Models.Person>(
+                .CanReturn(PropertySelector.SelectPropertiesFrom<Entities.Person>(
                     x => x.SSN,
                     x => x.DoDId,
                     x => x.DateOfBirth,
@@ -54,7 +54,7 @@ namespace CommandCentral.Authorization.Groups.Definitions
                     x => x.Changes,
                     x => x.BilletAssignment))
                     .IfInChainOfCommand()
-                .And.CanEdit(PropertySelector.SelectPropertiesFrom<Models.Person>(
+                .And.CanEdit(PropertySelector.SelectPropertiesFrom<Entities.Person>(
                     x => x.LastName,
                     x => x.FirstName,
                     x => x.MiddleName,

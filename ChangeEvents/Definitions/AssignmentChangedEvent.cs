@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CommandCentral.Models;
+using CommandCentral.Entities;
 using CommandCentral.Enums;
 using CommandCentral.ChangeEvents;
 
-namespace CommandCentral.ChangeEventSystem.ChangeEvents
+namespace CommandCentral.ChangeEvents.ChangeEvents
 {
     /// <summary>
     /// The event that should be raised when a person's division, department and/or command changes.

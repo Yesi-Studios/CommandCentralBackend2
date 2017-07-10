@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections;
-using CommandCentral.Models;
+using CommandCentral.Entities;
 using NHibernate.Collection;
 using NHibernate.Type;
 using System.Linq.Expressions;

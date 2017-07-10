@@ -1,9 +1,10 @@
-﻿using System;
+﻿using CommandCentral.Enums;
+using CommandCentral.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AtwoodUtils;
 
 namespace CommandCentral.Authorization.Groups.Definitions
 {
@@ -25,7 +26,7 @@ namespace CommandCentral.Authorization.Groups.Definitions
             HasAccessLevel(ChainOfCommandLevels.Self);
 
             HasChainOfCommand(ChainsOfCommand.Main)
-                .CanReturn(PropertySelector.SelectPropertiesFrom<Models.Person>(
+                .CanReturn(PropertySelector.SelectPropertiesFrom<Entities.Person>(
                     x => x.Id,
                     x => x.LastName,
                     x => x.FirstName,
@@ -53,7 +54,7 @@ namespace CommandCentral.Authorization.Groups.Definitions
                     x => x.BilletAssignment,
                     x => x.WatchAssignments,
                     x => x.PhoneNumbers))
-                .And.CanReturn(PropertySelector.SelectPropertiesFrom<Models.Person>(
+                .And.CanReturn(PropertySelector.SelectPropertiesFrom<Entities.Person>(
                     x => x.Id,
                     x => x.LastName,
                     x => x.FirstName,
@@ -98,7 +99,7 @@ namespace CommandCentral.Authorization.Groups.Definitions
                     x => x.UserPreferences,
                     x => x.DoDId))
                     .IfSelf()
-                .And.CanEdit(PropertySelector.SelectPropertiesFrom<Models.Person>(
+                .And.CanEdit(PropertySelector.SelectPropertiesFrom<Entities.Person>(
                     x => x.LastName,
                     x => x.FirstName,
                     x => x.MiddleName,

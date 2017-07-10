@@ -62,7 +62,7 @@ namespace CommandCentral.Utilities
         /// <param name="person"></param>
         /// <param name="client"></param>
         /// <returns></returns>
-        public static ResolvedPermissions ResolvePermissions(this Models.Person client, Models.Person person)
+        public static ResolvedPermissions ResolvePermissions(this Entities.Person client, Entities.Person person)
         {
             //Ensure that the client isn't null.
             if (client == null)

@@ -1,5 +1,5 @@
-﻿using CommandCentral.Models;
-using CommandCentral.Models.Watchbill;
+﻿using CommandCentral.Entities;
+using CommandCentral.Entities.Watchbill;
 using System;
 using System.Collections.Generic;
 using System.Linq;

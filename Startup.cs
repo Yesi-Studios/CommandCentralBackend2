@@ -28,10 +28,8 @@ namespace CommandCentral
 
             var rawConnectionString = $"server={Options.Server};database={Options.Database};user={Options.Username};" +
                 $"password={Options.Password};CertificatePassword={Options.CertificatePassword};SSL Mode={(Options.SecurityMode == SecurityModes.Both || Options.SecurityMode == SecurityModes.DBOnly ? "Required" : "None")}";
-            
-            var connectionString = new MySql.Data.MySqlClient.MySqlConnectionStringBuilder(rawConnectionString);
 
-            DataProvider.InitializeSessionFactory(connectionString);
+            Framework.Data.DataProvider.ConnectionString = rawConnectionString;
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.

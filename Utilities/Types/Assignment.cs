@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CommandCentral.Models.ReferenceLists;
+using CommandCentral.Entities.ReferenceLists;
 
 namespace CommandCentral
 {

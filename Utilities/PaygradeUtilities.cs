@@ -1,4 +1,4 @@
-﻿using CommandCentral.Models.ReferenceLists;
+﻿using CommandCentral.Entities.ReferenceLists;
 using System;
 using System.Collections.Generic;
 using System.Linq;

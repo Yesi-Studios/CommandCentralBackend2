@@ -4,19 +4,25 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FluentValidation.Results;
+using CommandCentral.Framework;
 
 namespace CommandCentral.DTOs
 {
-    [Validator(typeof(DTOValidator))]
-    public class LoginRequestDTO
+    public class LoginRequestDTO : IValidatable
     {
         public string Username { get; set; }
 
         public string Password { get; set; }
 
-        public class DTOValidator : AbstractValidator<LoginRequestDTO>
+        public ValidationResult Validate()
         {
-            public DTOValidator()
+            return new Validator().Validate(this);
+        }
+
+        public class Validator : AbstractValidator<LoginRequestDTO>
+        {
+            public Validator()
             {
                 RuleFor(x => x.Username).NotEmpty().MinimumLength(8);
                 RuleFor(x => x.Password).NotEmpty().MinimumLength(8);

@@ -1,4 +1,4 @@
-﻿using CommandCentral.Models.Watchbill;
+﻿using CommandCentral.Entities.Watchbill;
 using NHibernate.Criterion;
 using System;
 using System.Collections.Generic;
@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Linq.Expressions;
 using System.Reflection;
 using CommandCentral.Enums;
+using CommandCentral.Utilities;
 
 namespace CommandCentral.Framework.Data
 {
@@ -77,7 +78,7 @@ namespace CommandCentral.Framework.Data
             foreach (var value in str.Split(new[] { ',', ';', ' ' }, StringSplitOptions.RemoveEmptyEntries))
             {
                 if (String.IsNullOrWhiteSpace(value) || String.IsNullOrWhiteSpace(value.Trim()))
-                    throw new CommandCentralException("One of your values was not vallid.", ErrorTypes.Validation);
+                    throw new CommandCentralException("One of your values was not valid.", ErrorTypes.Validation);
 
                 values.Add(value.Trim());
             }
@@ -91,7 +92,7 @@ namespace CommandCentral.Framework.Data
                 var method = typeof(QueryOver).GetMethods().First(x => x.Name == "Of" && x.IsGenericMethod).MakeGenericMethod(((PropertyInfo)propertyExpression.GetProperty()).PropertyType);
 
                 var subQueryOver = (QueryOver)method.Invoke(null, null);
-                var criteria = subQueryOver.DetachedCriteria.Add(Restrictions.On<Models.ReferenceLists.ReferenceListItemBase>(x => x.Value).IsInsensitiveLike(value, MatchMode.Anywhere)).SetProjection(Projections.Id());
+                var criteria = subQueryOver.DetachedCriteria.Add(Restrictions.On<Entities.ReferenceLists.ReferenceListItemBase>(x => x.Value).IsInsensitiveLike(value, MatchMode.Anywhere)).SetProjection(Projections.Id());
 
                 disjunction.Add(Subqueries.PropertyIn(propertyExpression.GetPropertyName(), criteria));
             }
